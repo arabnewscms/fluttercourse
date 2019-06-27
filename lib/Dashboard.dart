@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import './Home.dart';
+import './AddContact.dart';
 class Dashboard extends StatefulWidget{
   @override
   State<StatefulWidget> createState() {
@@ -19,7 +20,7 @@ class DashboardState extends State<Dashboard>{
     });
   }
 
-  Future<void> _signout() async{
+  Future<void> _signout() async {
     auth.signOut();
     Navigator.pushReplacement(context,
         MaterialPageRoute(builder: (context) => Home()));
@@ -37,6 +38,16 @@ class DashboardState extends State<Dashboard>{
       appBar: AppBar(
         title: Text('My Contacts App'),
         actions: <Widget>[
+          IconButton(
+            icon: Icon(Icons.add),
+            onPressed: (){
+              Navigator.push(context, MaterialPageRoute(
+                  builder: (context){
+                    return AddContact();
+                  }
+              ));
+            },
+          ),
           FlatButton(
           //  color: Colors.white,
             child: Text('SignOut'),
@@ -49,7 +60,7 @@ class DashboardState extends State<Dashboard>{
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-           // Text('Welcome ${user.email}')
+
           ],
         ),
       ),
